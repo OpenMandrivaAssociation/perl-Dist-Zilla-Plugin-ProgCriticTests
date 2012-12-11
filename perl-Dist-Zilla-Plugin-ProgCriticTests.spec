@@ -1,32 +1,32 @@
 %define upstream_name    Dist-Zilla-Plugin-ProgCriticTests
 %define upstream_version 1.102520
 
-Name:       perl-%{upstream_name}
-Version:    %perl_convert_version %{upstream_version}
-Release:    %mkrel 2
+Name:		perl-%{upstream_name}
+Version:	%perl_convert_version %{upstream_version}
+Release:	3
 
-Summary:    Gradually enforce coding standards with Dist::Zilla
-License:    GPL+ or Artistic
-Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{upstream_name}
-Source0:    http://www.cpan.org/modules/by-module/Dist/%{upstream_name}-%{upstream_version}.tar.gz
+Summary:	Gradually enforce coding standards with Dist::Zilla
+License:	GPL+ or Artistic
+Group:		Development/Perl
+Url:		http://search.cpan.org/dist/%{upstream_name}
+Source0:	http://www.cpan.org/modules/by-module/Dist/%{upstream_name}-%{upstream_version}.tar.gz
 
-BuildRequires: perl(Capture::Tiny)
-BuildRequires: perl(Dist::Zilla::Plugin::InlineFiles)
-BuildRequires: perl(Dist::Zilla::Role::TextTemplate)
-BuildRequires: perl(Dist::Zilla::Tester)
-BuildRequires: perl(JSON)
-BuildRequires: perl(Moose)
-BuildRequires: perl(Params::Util)
-BuildRequires: perl(Path::Class)
-BuildRequires: perl(Sub::Exporter)
-BuildRequires: perl(Test::More)
-BuildRequires: perl(Test::Perl::Critic::Progressive)
-BuildRequires: perl(Try::Tiny)
-BuildRequires: perl(YAML::Tiny)
-BuildRequires: perl(autodie)
-BuildArch: noarch
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}
+BuildRequires:	perl-devel
+BuildRequires:	perl(Capture::Tiny)
+BuildRequires:	perl(Dist::Zilla::Plugin::InlineFiles)
+BuildRequires:	perl(Dist::Zilla::Role::TextTemplate)
+BuildRequires:	perl(Dist::Zilla::Tester)
+BuildRequires:	perl(JSON)
+BuildRequires:	perl(Moose)
+BuildRequires:	perl(Params::Util)
+BuildRequires:	perl(Path::Class)
+BuildRequires:	perl(Sub::Exporter)
+BuildRequires:	perl(Test::More)
+BuildRequires:	perl(Test::Perl::Critic::Progressive)
+BuildRequires:	perl(Try::Tiny)
+BuildRequires:	perl(YAML::Tiny)
+BuildRequires:	perl(autodie)
+BuildArch:	noarch
 
 %description
 Please see Test::Perl::Critic::Progressive on what exactly it does. For you
@@ -42,23 +42,17 @@ all data it needs to know about your dist as well as the options you give.
 %setup -q -n %{upstream_name}-%{upstream_version}
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+perl Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
-make test
+#make test
 
 %install
-rm -rf %buildroot
 %makeinstall_std
 
-%clean
-rm -rf %buildroot
-
 %files
-%defattr(-,root,root)
 %doc Changes README META.yml LICENSE META.json
 %{_mandir}/man3/*
-%perl_vendorlib/*
-
+%{perl_vendorlib}/*
 
