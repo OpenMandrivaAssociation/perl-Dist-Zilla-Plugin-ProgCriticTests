@@ -1,9 +1,9 @@
 %define upstream_name    Dist-Zilla-Plugin-ProgCriticTests
-%define upstream_version 1.102520
+%define upstream_version 1.111750
 
 Name:		perl-%{upstream_name}
 Version:	%perl_convert_version %{upstream_version}
-Release:	3
+Release:	1
 
 Summary:	Gradually enforce coding standards with Dist::Zilla
 License:	GPL+ or Artistic
@@ -55,4 +55,5 @@ perl Makefile.PL INSTALLDIRS=vendor
 %doc Changes README META.yml LICENSE META.json
 %{_mandir}/man3/*
 %{perl_vendorlib}/*
+
 
